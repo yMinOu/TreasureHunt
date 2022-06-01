@@ -1,0 +1,93 @@
+package Treasurehunt;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class Start extends JFrame {
+	Container c = getContentPane();
+	JButton bt = new JButton();
+	JButton bt2 = new JButton();
+	
+	Start() {
+		c.setLayout(null);
+		
+		
+		// 게임 이동
+		ImageIcon bimg = new ImageIcon("img\\startbtn.png");
+		Image bimg1 = bimg.getImage();
+		Image bimg2 = bimg1.getScaledInstance(400, 70, Image.SCALE_SMOOTH);
+		ImageIcon bimg3 = new ImageIcon(bimg2);
+		
+		bt = new JButton(bimg3);
+		bt.setBounds(400, 430, 400, 70);
+		c.add(bt);
+		bt.addMouseListener(new clickListener());
+		
+		//게임 설명
+//		
+		ImageIcon bimg2_1 = new ImageIcon("img\\Explanationbtn.png");
+		Image bimg2_2 = bimg2_1.getImage();
+		Image bimg2_3 = bimg2_2.getScaledInstance(400, 70, Image.SCALE_SMOOTH);
+		ImageIcon bimg2_4 = new ImageIcon(bimg2_3);
+		
+		bt2 = new JButton(bimg2_4);
+		bt2.setBounds(400, 550, 400, 70);
+		c.add(bt2);
+		bt2.addMouseListener(new clickListener2());
+		
+		
+		JLabel bg = new JLabel();
+
+		ImageIcon ba = new ImageIcon("img\\start.png");
+		Image bac = ba.getImage();
+		Image back = bac.getScaledInstance(1200, 770, Image.SCALE_SMOOTH);
+		ImageIcon backg = new ImageIcon(back);
+		bg = new JLabel(backg);
+		bg.setBounds(0, -5, 1200, 770);
+		c.add(bg);
+		
+		// 창
+		setSize(1200, 800);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public class clickListener implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+//        	new Game();
+			new Pass();
+        	setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+	
+	public class clickListener2 implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+        	new Explanation();
+			//setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+	
+	public static void main(String args[]) {
+		new Start();
+	}
+}

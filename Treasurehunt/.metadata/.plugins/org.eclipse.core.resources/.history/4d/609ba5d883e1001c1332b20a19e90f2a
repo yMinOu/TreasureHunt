@@ -1,0 +1,51 @@
+package Treasurehunt;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.*;
+import javax.swing.*;
+
+public class Level1 {
+	String []Level = {"1", "2", "3"};
+	JLabel Levellb1 = new JLabel();
+	JLabel Levellb2 = new JLabel();
+	JLabel Levellb3 = new JLabel();
+	
+	int count = 0;
+	public JLabel1 Level(Container c, int time){
+		Levellb1 = new JLabel(Level[0]);
+		Levellb1.setBounds(10, 10, 20, 20);
+		c.add(Levellb1);
+		
+		Levellb2 = new JLabel(Level[0]);
+		Levellb2.setBounds(10, 10, 20, 20);
+		c.add(Levellb2);
+//		Levellb2.setVisible(false);
+		
+		Levellb3 = new JLabel(Level[0]);
+		Levellb3.setBounds(10, 10, 20, 20);
+		c.add(Levellb3);
+//		Levellb2.setVisible(false);
+
+//		Timer m = new Timer();
+//		TimerTask task = new TimerTask() {
+//			public void run() {
+//				if (count > 3) {
+//					Levellb1.setVisible(false);
+//					Levellb2.setVisible(true);
+//				}
+//				count++;
+////				System.out.println(count);
+//			}
+//		};
+//		m.schedule(task, 1000, 1000); // 1초 뒤에 1초마다 run 메소드 수행
+		
+		if(time > 3) { 
+			Levellb1 = new JLabel(Level[0]);
+			Levellb1.setVisible(false);
+		}
+		if(time > 6) Levellb1 = new JLabel(Level[1]);
+		if(time > 9) Levellb1 = new JLabel(Level[2]);
+		return Levellb1;
+	}
+}

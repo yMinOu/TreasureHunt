@@ -1,0 +1,77 @@
+package Treasurehunt;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.*;
+import javax.swing.*;
+
+public class Game extends JFrame {
+	Container c = getContentPane();
+
+	JLabel Levellb1 = new JLabel("1");
+	JLabel Levellb2 = new JLabel("2");
+	JLabel Levellb3 = new JLabel("3");
+
+	int count = 0;
+
+	Game() {
+
+		c.setLayout(null);
+
+		// 레벨
+		Levellb1.setBounds(10, 10, 20, 20);
+		c.add(Levellb1);
+
+		Levellb2.setBounds(10, 10, 20, 20);
+		c.add(Levellb2);
+		Levellb2.setVisible(false);
+
+		Levellb3.setBounds(20, 20, 20, 20);
+		c.add(Levellb3);
+		Levellb3.setVisible(false);
+
+		Timer m = new Timer();
+		TimerTask task = new TimerTask() {
+			public void run() {
+				if (count > 3) {
+					Levellb1.setVisible(false);
+					Levellb2.setVisible(true);
+				}
+				if (count > 6) {
+					Levellb2.setVisible(false);
+					Levellb3.setVisible(true);
+				}
+				count++;
+
+				System.out.println(count);
+			}
+		};
+		m.schedule(task, 1000, 1000); // 1초 뒤에 1초마다 run 메소드 수행
+
+		
+		// 타임 테스트
+		Timer n = new Timer();
+		TimerTask t = new TimerTask() {
+			public void run() {
+				if (count > 6) {
+					Levellb3.setVisible(true);
+				}
+				count++;
+
+				System.out.println(count);
+			}
+		};
+		n.schedule(t, 500, 1000); // 1초 뒤에 1초마다 run 메소드 수행
+
+		
+		
+		// 창
+		setSize(1200, 800);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

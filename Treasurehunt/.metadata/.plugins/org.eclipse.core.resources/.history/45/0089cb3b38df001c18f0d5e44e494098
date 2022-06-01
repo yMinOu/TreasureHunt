@@ -1,0 +1,18 @@
+package Treasurehunt;
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Enemy {
+	public JLabel Enemy(){
+		ImageIcon e = new ImageIcon("img\\player.png");
+		Image en = e.getImage();
+		Image ene = en.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon enem = new ImageIcon(ene);
+		JLabel enemy2 = new JLabel(enem);
+		
+		return enemy2;
+	}
+}

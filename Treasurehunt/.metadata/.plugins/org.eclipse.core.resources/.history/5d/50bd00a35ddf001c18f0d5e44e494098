@@ -1,0 +1,50 @@
+package Treasurehunt;
+
+import java.awt.*;
+import javax.swing.*;
+
+import Treasurehunt.Start.clickListener;
+
+import java.awt.event.*;
+
+public class Pass extends JFrame {
+	Container c = getContentPane();
+	
+	Pass(){
+		c.setLayout(null);
+		
+		JButton btn = new JButton("다음 단계로");
+		JButton btn2 = new JButton("종료");
+		
+		btn.setBounds(200, 150, 230, 50);
+		c.add(btn);
+		
+		btn.addMouseListener(new clickListener());
+		
+		
+		btn2.setBounds(200, 220, 230, 50);
+		c.add(btn2);
+		
+		// 창
+		setSize(600, 400);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public class clickListener implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+        	new Level2();
+			setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+}

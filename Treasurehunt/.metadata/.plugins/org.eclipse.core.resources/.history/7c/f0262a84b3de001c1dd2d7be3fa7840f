@@ -1,0 +1,50 @@
+package Treasurehunt;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+//import java.awt.event.KeyEvent;
+
+
+public class Main extends JFrame {
+	Container c = getContentPane();
+	JButton bt = new JButton("게임시작");
+	
+	Main() {
+		// 게임 이동
+		c.setLayout(null);
+		bt = new JButton("게임시작");
+		bt.setBounds(450, 400, 300, 60);
+		c.add(bt);
+		bt.addMouseListener(new clickListener());
+		
+		
+		// 창
+		setSize(1200, 800);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public class clickListener implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+        	new start();
+			setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+	
+	public static void main(String args[]) {
+		new Main();
+	}
+}

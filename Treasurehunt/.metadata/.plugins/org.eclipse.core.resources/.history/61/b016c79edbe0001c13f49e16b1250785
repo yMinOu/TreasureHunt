@@ -1,0 +1,52 @@
+package Treasurehunt;
+
+import javax.swing.*;
+
+import Treasurehunt.Start.clickListener2;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class Explanation extends JFrame {
+	Container c = getContentPane();
+	JButton bt2 = new JButton("x");
+	
+	Explanation(){
+		c.setLayout(null);
+		
+		bt2.setBounds(520, 10, 50, 50);
+		c.add(bt2);
+		bt2.addMouseListener(new clickListener2());
+		
+		JLabel bg = new JLabel();
+
+		ImageIcon ba = new ImageIcon("img\\Explanation.png");
+		Image bac = ba.getImage();
+		Image back = bac.getScaledInstance(570, 470, Image.SCALE_SMOOTH);
+		ImageIcon backg = new ImageIcon(back);
+		bg = new JLabel(backg);
+		bg.setBounds(0, -5, 600, 470);
+		c.add(bg);
+		
+		// 창
+		setSize(600, 500);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정	
+	}
+	
+	public class clickListener2 implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+			setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+	
+}

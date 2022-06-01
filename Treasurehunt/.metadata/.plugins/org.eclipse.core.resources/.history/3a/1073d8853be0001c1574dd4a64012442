@@ -1,0 +1,166 @@
+package Treasurehunt;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class Plants {
+	public Container Background(Container c) {
+		JLabel p1 = new JLabel();
+		JLabel p2 = new JLabel();
+		JLabel p3 = new JLabel();
+		JLabel p4 = new JLabel();
+		JLabel p5 = new JLabel();
+		JLabel p6 = new JLabel();
+		JLabel p7 = new JLabel();
+		JLabel p8 = new JLabel();
+		JLabel p9 = new JLabel();
+		JLabel p10 = new JLabel();
+		
+		JLabel p11 = new JLabel();
+		JLabel p12 = new JLabel();
+		JLabel p13 = new JLabel();
+		JLabel p14 = new JLabel();
+		JLabel p15 = new JLabel();
+		JLabel p16 = new JLabel();
+
+		JLabel p19 = new JLabel();
+		JLabel p20 = new JLabel();
+		
+		JLabel p21 = new JLabel();
+		JLabel p22 = new JLabel();
+		JLabel p23 = new JLabel();
+		JLabel p24 = new JLabel();
+		JLabel p25 = new JLabel();
+		JLabel p26 = new JLabel();
+		JLabel p27 = new JLabel();
+		
+		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+		p1 = new JLabel(p1_1);
+		p1.setBounds(5, 5, 60, 100);
+		c.add(p1);
+		
+		ImageIcon p1_2 = new ImageIcon("img\\plants.png");
+		p2 = new JLabel(p1_2);
+		p2.setBounds(65, 5, 60, 100);
+		c.add(p2);
+		
+		ImageIcon p1_3 = new ImageIcon("img\\plants.png");
+		p3 = new JLabel(p1_3);
+		p3.setBounds(125, 5, 60, 100);
+		c.add(p3);
+		
+		ImageIcon p1_4 = new ImageIcon("img\\plants.png");
+		p4 = new JLabel(p1_4);
+		p4.setBounds(185, 5, 60, 100);
+		c.add(p4);
+		
+		ImageIcon p1_5 = new ImageIcon("img\\plants.png");
+		p5 = new JLabel(p1_5);
+		p5.setBounds(245, 5, 60, 100);
+		c.add(p5);
+		
+		ImageIcon p1_6 = new ImageIcon("img\\plants.png");
+		p6 = new JLabel(p1_6);
+		p6.setBounds(305, 5, 60, 100);
+		c.add(p6);
+		
+		ImageIcon p1_7 = new ImageIcon("img\\plants.png");
+		p7 = new JLabel(p1_7);
+		p7.setBounds(365, 5, 60, 100);
+		c.add(p7);
+		
+		ImageIcon p1_8 = new ImageIcon("img\\plants.png");
+		p8 = new JLabel(p1_8);
+		p8.setBounds(425, 5, 60, 100);
+		c.add(p8);
+		
+		ImageIcon p1_9 = new ImageIcon("img\\plants.png");
+		p9 = new JLabel(p1_9);
+		p9.setBounds(485, 5, 60, 100);
+		c.add(p9);
+		
+		ImageIcon p1_10 = new ImageIcon("img\\plants.png");
+		p10 = new JLabel(p1_10);
+		p10.setBounds(545, 5, 60, 100);
+		c.add(p10);
+		
+		ImageIcon p1_11 = new ImageIcon("img\\plants.png");
+		p11 = new JLabel(p1_11);
+		p11.setBounds(605, 5, 60, 100);
+		c.add(p11);
+		
+		ImageIcon p1_12 = new ImageIcon("img\\plants.png");
+		p12 = new JLabel(p1_12);
+		p12.setBounds(665, 5, 60, 100);
+		c.add(p12);
+		
+		ImageIcon p1_13 = new ImageIcon("img\\plants.png");
+		p13 = new JLabel(p1_13);
+		p13.setBounds(725, 5, 60, 100);
+		c.add(p13);
+		
+		ImageIcon p1_14 = new ImageIcon("img\\plants.png");
+		p14 = new JLabel(p1_14);
+		p14.setBounds(785, 5, 60, 100);
+		c.add(p14);
+		
+		ImageIcon p1_15 = new ImageIcon("img\\plants.png");
+		p15 = new JLabel(p1_15);
+		p15.setBounds(845, 5, 60, 100);
+		c.add(p15);
+		
+		ImageIcon p1_16 = new ImageIcon("img\\plants.png");
+		p16 = new JLabel(p1_16);
+		p16.setBounds(905, 5, 60, 100);
+		c.add(p16);
+		
+		ImageIcon p1_19 = new ImageIcon("img\\plants.png");
+		p19 = new JLabel(p1_19);
+		p19.setBounds(1055, 5, 60, 100);
+		c.add(p19);
+		
+		ImageIcon p1_20 = new ImageIcon("img\\plants.png");
+		p20 = new JLabel(p1_20);
+		p20.setBounds(1115, 5, 60, 100);
+		c.add(p20);
+		
+		ImageIcon p2_21 = new ImageIcon("img\\plants.png");
+		p21 = new JLabel(p2_21);
+		p21.setBounds(1115, 85, 60, 100);
+		c.add(p21);
+		
+		ImageIcon p2_22 = new ImageIcon("img\\plants.png");
+		p22 = new JLabel(p2_22);
+		p22.setBounds(1115, 165, 60, 100);
+		c.add(p22);
+		
+		ImageIcon p2_23 = new ImageIcon("img\\plants.png");
+		p23 = new JLabel(p2_23);
+		p23.setBounds(1115, 245, 60, 100);
+		c.add(p23);
+		
+		ImageIcon p2_24 = new ImageIcon("img\\plants.png");
+		p24 = new JLabel(p2_24);
+		p24.setBounds(1115, 325, 60, 100);
+		c.add(p24);
+		
+		ImageIcon p2_25 = new ImageIcon("img\\plants.png");
+		p25 = new JLabel(p2_25);
+		p25.setBounds(1115, 405, 60, 100);
+		c.add(p25);
+		
+		ImageIcon p2_26 = new ImageIcon("img\\plants.png");
+		p26 = new JLabel(p2_26);
+		p26.setBounds(1115, 485, 60, 100);
+		c.add(p26);
+		
+		ImageIcon p2_27 = new ImageIcon("img\\plants.png");
+		p27 = new JLabel(p2_27);
+		p27.setBounds(1115, 565, 60, 100);
+		c.add(p27);
+		
+		return c;
+	}
+
+}

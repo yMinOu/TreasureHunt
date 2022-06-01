@@ -1,0 +1,22 @@
+package Treasurehunt;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class Plants {
+	public Container Background(Container c) {
+		JLabel zb = new JLabel();
+		
+		ImageIcon z = new ImageIcon("img\\plants.png");
+//		Image zz = z.getImage();
+//		Image zzz = zz.getScaledInstance(60, 100, Image.SCALE_SMOOTH);
+//		ImageIcon zzzz = new ImageIcon(zzz);
+		zb = new JLabel(z);
+		zb.setBounds(500, 500, 60, 100);
+		c.add(zb);
+		
+		return c;
+	}
+
+}

@@ -1,0 +1,22 @@
+package Treasurehunt;
+
+import javax.swing.*;
+import java.awt.*;
+
+// ¹è°æ
+public class Background {
+	public Container Background(Container c) {
+		JLabel bg = new JLabel();
+
+		ImageIcon ba = new ImageIcon("img\\bg3.png");
+		Image bac = ba.getImage();
+		Image back = bac.getScaledInstance(1200, 780, Image.SCALE_SMOOTH);
+		ImageIcon backg = new ImageIcon(back);
+		bg = new JLabel(backg);
+		bg.setBounds(0, -10, 1200, 750);
+		c.add(bg);
+		
+
+		return c;
+	}
+}

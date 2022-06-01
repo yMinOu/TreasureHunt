@@ -1,0 +1,98 @@
+package Treasurehunt;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.*;
+import javax.swing.*;
+
+public class Game extends JFrame {
+	Container c = getContentPane();
+
+	int Levellb = 1;
+	JLabel Levellb1 = new JLabel("1");
+	JLabel Levellb2 = new JLabel("2");
+	JLabel Levellb3 = new JLabel("3");
+	
+	int move = 100;
+	int count = 0;
+	
+	JLabel enemy = new JLabel();
+	
+	Game() {
+		c.setLayout(null);
+		
+		// 적
+		ImageIcon e = new ImageIcon("img\\player.png");
+		Image en = e.getImage();
+		Image ene = en.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		ImageIcon enem = new ImageIcon(ene);
+
+		enemy = new JLabel(enem);
+		enemy.setBounds(100, 100, 50, 50);
+		c.add(enemy);
+		
+		
+		// 레벨
+		Levellb1.setBounds(10, 10, 20, 20);
+		c.add(Levellb1);
+
+		Levellb2.setBounds(10, 10, 20, 20);
+		c.add(Levellb2);
+		Levellb2.setVisible(false);
+
+		Levellb3.setBounds(20, 20, 20, 20);
+		c.add(Levellb3);
+		Levellb3.setVisible(false);
+
+		Timer m = new Timer();
+		TimerTask task = new TimerTask() {
+			public void run() {
+				if (count > 180) {
+					Levellb++;
+					Levellb1.setVisible(false);
+					Levellb2.setVisible(true);
+				}
+				if (count > 300) {
+					Levellb++;
+					Levellb2.setVisible(false);
+					Levellb3.setVisible(true);
+				}
+				count++;
+			}
+		};
+		m.schedule(task, 1000, 1000); // 1초 뒤에 1초마다 run 메소드 수행
+
+		
+		// 타임 테스트
+		Timer n = new Timer();
+		TimerTask t = new TimerTask() {
+			public void run() {
+				if (Levellb == 1) {
+					for(int i = 0; i < 10; i++) {
+						move += 10;
+						enemy.setLocation(move, 100);
+						System.out.println(i);
+					}
+					for(int j = 0; j < 10; j++) {
+						move -= 10;
+						enemy.setLocation(move, 100);
+					}
+					System.out.println(move);
+					//enemy.setLocation(move - j, 100);
+				}
+			}
+		};
+		n.schedule(t, 1000, 1000); // 1초 뒤에 1초마다 run 메소드 수행
+
+		
+		
+		// 창
+		setSize(1200, 800);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

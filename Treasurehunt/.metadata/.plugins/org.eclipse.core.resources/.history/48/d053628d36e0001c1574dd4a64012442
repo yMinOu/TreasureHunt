@@ -1,0 +1,67 @@
+package Treasurehunt;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class Plants {
+	public Container Background(Container c) {
+		JLabel p1 = new JLabel();
+		JLabel p2 = new JLabel();
+		JLabel p3 = new JLabel();
+		JLabel p4 = new JLabel();
+		
+		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+		p1 = new JLabel(p1_1);
+		p1.setBounds(5, 5, 60, 100);
+		c.add(p1);
+		
+		ImageIcon p1_2 = new ImageIcon("img\\plants.png");
+		p2 = new JLabel(p1_2);
+		p2.setBounds(65, 5, 60, 100);
+		c.add(p2);
+		
+		ImageIcon p1_3 = new ImageIcon("img\\plants.png");
+		p3 = new JLabel(p1_3);
+		p3.setBounds(125, 500, 60, 100);
+		c.add(p3);
+		
+		ImageIcon p1_4 = new ImageIcon("img\\plants.png");
+		p4 = new JLabel(p1_4);
+		p4.setBounds(185, 500, 60, 100);
+		c.add(p4);
+		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+//		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+//		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+//		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+//		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+//		
+//		ImageIcon p1_1 = new ImageIcon("img\\plants.png");
+//		p1 = new JLabel(p1_1);
+//		p1.setBounds(500, 500, 60, 100);
+//		c.add(p1);
+		
+		return c;
+	}
+
+}

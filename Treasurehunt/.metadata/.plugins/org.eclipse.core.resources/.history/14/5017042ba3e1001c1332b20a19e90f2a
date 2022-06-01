@@ -1,0 +1,512 @@
+package Treasurehunt;
+
+// 공격 가능
+
+// 우물생성
+// 적 모두 없앨 시 보물상자 생김
+// + 적 쫒아옴
+
+import java.util.Random;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.*;
+import javax.swing.*;
+
+import Treasurehunt.Level2.getkey;
+
+import java.awt.event.*;
+
+// 2단계
+public class Level2 extends JFrame {
+	Container c = getContentPane();
+
+	// 공격 횟수 체크
+	int count1 = 0;
+
+	// 느린 적
+	JLabel enemy1 = new JLabel();
+	JLabel enemy2 = new JLabel();
+	JLabel enemy3 = new JLabel();
+	
+	// 빠른 적
+	JLabel enemy4 = new JLabel();
+	JLabel enemy5 = new JLabel();
+	
+	// 적이 없어졌는지 체크
+	boolean Check1 = true;
+	boolean Check2 = true;
+	boolean Check3 = true;
+	boolean Check4 = true;
+	boolean Check5 = true;
+
+	boolean pass = false;
+
+	// 우물
+	JLabel hole = new JLabel();
+	JLabel hole2 = new JLabel();
+	JLabel hole3 = new JLabel();
+
+	// 보물상자
+	JLabel treasure = new JLabel();
+
+	// 플레이어
+	JLabel player = new JLabel();
+	public int x = 100, y = 600;
+	private final int FLYING_UNIT = 10;
+
+	// 공격
+	JLabel Attack = new JLabel();
+	int ax;
+	int ay;
+	boolean b = false;
+
+	// 적 랜덤 위치 변수
+	int enemy1moveY, enemy1moveX;
+	int enemy2moveY, enemy2moveX;
+	int enemy3moveY, enemy3moveX;
+	int enemy4moveY, enemy4moveX;
+	int enemy5moveY, enemy5moveX;
+	
+	int enemy6moveY, enemy6moveX;
+	int enemy7moveY, enemy7moveX;
+	int enemy8moveY, enemy8moveX;
+	
+	// 0 ~ 4 지정적, 5 ~7 우물 위치
+	int[] ranX = { 0, 0, 0, 0, 0, 0, 0, 0};
+
+	// 적 이동 시간 체크
+	int enTime = 0;
+	int enTime2 = 0;
+	
+	// 적 X위치 랜덤 생성 200 ~ 800
+	public int ranX(int[] ranX, int index) {
+		for (int i = 0; i < ranX.length; i++) {
+			ranX[i] = (int) (Math.random() * 600) + 200;
+		}
+		return ranX[index];
+	}
+
+	Level2() {
+		c.setLayout(null); // 컨텐트팬 해제
+
+		// 적, 우물 랜덤 위치 값 변수에 넣기
+		enemy1moveX = ranX(ranX, 0); enemy1moveY = 100;
+		enemy2moveX = ranX(ranX, 1); enemy2moveY = 300;
+		enemy3moveX = ranX(ranX, 2); enemy3moveY = 500;
+		enemy4moveX = ranX(ranX, 3); enemy4moveY = 170;
+		enemy5moveX = ranX(ranX, 4); enemy5moveY = 420;
+		
+		enemy6moveX = ranX(ranX, 5); enemy6moveY = 250;
+		enemy7moveX = ranX(ranX, 6); enemy7moveY = 370;
+		enemy8moveX = ranX(ranX, 7); enemy8moveY = 420;
+		
+		// 2단계 이미지
+		ImageIcon s = new ImageIcon("img\\stage2.png");
+		Image st = s.getImage();
+		Image sta = st.getScaledInstance(100, 50, Image.SCALE_SMOOTH);
+		ImageIcon stag = new ImageIcon(sta);
+
+		JLabel stage = new JLabel(stag);
+		stage.setBounds(0, 5, 100, 50);
+		c.add(stage);
+
+		// 플레이어 이미지
+		ImageIcon pl = new ImageIcon("img\\player1.png");
+		Image pla = pl.getImage();
+		Image play = pla.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon playe = new ImageIcon(play);
+
+		player = new JLabel(playe);
+		player.setBounds(140, 600, 80, 80);
+		addKeyListener(new getkey());
+		c.add(player);
+
+		// 느린 적1 이미지
+		ImageIcon e = new ImageIcon("img\\Enemy.png");
+		Image en = e.getImage();
+		Image ene = en.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon enem = new ImageIcon(ene);
+
+		enemy1 = new JLabel(enem);
+		enemy1.setBounds(enemy1moveX, enemy1moveY, 80, 80);
+		c.add(enemy1);
+
+		// 느린 적2 이미지
+		ImageIcon e2 = new ImageIcon("img\\Enemy.png");
+		Image en2 = e2.getImage();
+		Image ene2 = en2.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon enem2 = new ImageIcon(ene2);
+
+		enemy2 = new JLabel(enem2);
+		enemy2.setBounds(enemy2moveX, enemy2moveY, 80, 80);
+		c.add(enemy2);
+
+		// 느린 적3 이미지
+		ImageIcon e3 = new ImageIcon("img\\Enemy.png");
+		Image en3 = e3.getImage();
+		Image ene3 = en3.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon enem3 = new ImageIcon(ene3);
+
+		enemy3 = new JLabel(enem3);
+		enemy3.setBounds(enemy3moveX, enemy3moveY, 80, 80);
+		c.add(enemy3);
+
+		// 빠른 적1 이미지
+		ImageIcon e4 = new ImageIcon("img\\Enemy2.png");
+		Image en4 = e4.getImage();
+		Image ene4 = en4.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon enem4 = new ImageIcon(ene4);
+
+		enemy4 = new JLabel(enem4);
+		enemy4.setBounds(enemy4moveX, enemy4moveY, 80, 80);
+		c.add(enemy4);
+
+		// 빠른 적2 이미지
+		ImageIcon e5 = new ImageIcon("img\\Enemy2.png");
+		Image en5 = e5.getImage();
+		Image ene5 = en5.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		ImageIcon enem5 = new ImageIcon(ene5);
+
+		enemy5 = new JLabel(enem5);
+		enemy5.setBounds(enemy5moveX, enemy5moveY, 80, 80);
+		c.add(enemy5);
+		
+		// 공격 이미지
+		ImageIcon a = new ImageIcon("img\\bullet.png");
+		Image at = a.getImage();
+		Image att = at.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		ImageIcon atta = new ImageIcon(att);
+
+		Attack = new JLabel(atta);
+		c.add(Attack);
+		Attack.setVisible(false);
+
+		// 우물 이미지1
+		ImageIcon h = new ImageIcon("img\\Well.png");
+		Image ho = h.getImage();
+		Image hol = ho.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon holl = new ImageIcon(hol);
+
+		hole = new JLabel(holl);
+		hole.setBounds(enemy6moveX, enemy6moveY, 100, 100);
+		c.add(hole);
+
+		// 우물 이미지2
+		ImageIcon h2 = new ImageIcon("img\\Well.png");
+		Image ho2 = h2.getImage();
+		Image hol2 = ho2.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon holl2 = new ImageIcon(hol2);
+
+		hole2 = new JLabel(holl2);
+		hole2.setBounds(enemy7moveX, enemy7moveY, 100, 100);
+		c.add(hole2);
+
+		// 우물 이미지3
+		ImageIcon h3 = new ImageIcon("img\\Well.png");
+		Image ho3 = h3.getImage();
+		Image hol3 = ho3.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon holl3 = new ImageIcon(hol3);
+
+		hole3 = new JLabel(holl3);
+		hole3.setBounds(enemy8moveX, enemy8moveY, 100, 100);
+		c.add(hole3);
+
+		// 보물상자 이미지
+		ImageIcon tr = new ImageIcon("img\\treasure2.png");
+		Image tre = tr.getImage();
+		Image trea = tre.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+		ImageIcon treas = new ImageIcon(trea);
+
+		treasure = new JLabel(treas);
+		treasure.setBounds(960, 20, 90, 90);
+		c.add(treasure);
+		treasure.setVisible(false);
+
+		// 배경 이미지
+		Background bg = new Background();
+		bg.Background(c);
+
+		// 적이 공격 맞음, 적 이동, 우물 들어감, 플레이어 적 부딪침 체크
+		Timer n3 = new Timer();
+		TimerTask t3 = new TimerTask() {
+			public void run() {
+				// 플레이어가 공격을 하였을 시 b = true
+				if (b == true) {
+
+					// 적이 공격 맞음
+					if ((ay > enemy1.getY() - 75 && ay < enemy1.getY() + 75 && ax - 40  > enemy1.getX() - 60
+							&& ax < enemy1.getX() + 60)) {
+						enemy1.setVisible(false); // 적 화면에 지워줌
+						Check1 = false;           // 적 없어진것 체크
+						Music.audio2();           // 적 맞춤 효과음 생성
+
+					}
+					if ((ay > enemy2.getY() - 75 && ay < enemy2.getY() + 75 && ax - 40  > enemy2.getX() - 60
+							&& ax < enemy2.getX() + 60)) {
+						enemy2.setVisible(false);
+						Check2 = false;
+						Music.audio2();
+
+					}
+					if ((ay > enemy3.getY() - 75 && ay < enemy3.getY() + 75 && ax - 40  > enemy3.getX() - 60
+							&& ax < enemy3.getX() + 60)) {
+						enemy3.setVisible(false);
+						Check3 = false;
+						Music.audio2();
+
+					}
+					if ((ay > enemy4.getY() - 75 && ay < enemy4.getY() + 75 && ax - 40  > enemy4.getX() - 60
+							&& ax < enemy4.getX() + 60)) {
+						enemy4.setVisible(false);
+						Check4 = false;
+						Music.audio2();
+					}
+					if ((ay > enemy5.getY() - 75 && ay < enemy5.getY() + 75 && ax - 40  > enemy5.getX() - 60
+							&& ax < enemy5.getX() + 60)) {
+						enemy5.setVisible(false);
+						Check5 = false;
+						Music.audio2();
+					}
+
+					// 적이 모두 없어졌을 시 보물 보여줌
+					if (Check1 == false && Check2 == false && Check3 == false && Check4 == false && Check5 == false) {
+						treasure.setVisible(true);
+					}
+				}
+
+				// 적 이동 (1.5초씩 오른쪽 왼쪽 이동)
+				if (enTime < 15) {
+					enemy1moveX += 10;
+					enemy1.setLocation(enemy1moveX, enemy1moveY);
+
+					enemy2moveX -= 10;
+					enemy2.setLocation(enemy2moveX, enemy2moveY);
+
+					enemy3moveX += 10;
+					enemy3.setLocation(enemy3moveX, enemy3moveY);
+
+				} else if (enTime < 30) {
+					enemy1moveX -= 10;
+					enemy1.setLocation(enemy1moveX, enemy1moveY);
+
+					enemy2moveX += 10;
+					enemy2.setLocation(enemy2moveX, enemy2moveY);
+
+					enemy3moveX -= 10;
+					enemy3.setLocation(enemy3moveX, enemy3moveY);
+
+					if (enTime == 29)
+						enTime = 0;
+				}
+				enTime++;
+
+				// 우물 들어감 체크
+				if ((y > hole.getY() - 60 && y < hole.getY() + 80 && x > hole.getX() - 45 && x < hole.getX() + 80)
+						|| (y > hole2.getY() - 60 && y < hole2.getY() + 80 && x > hole2.getX() - 45
+								&& x < hole2.getX() + 80)
+						|| (y > hole3.getY() - 60 && y < hole3.getY() + 80 && x > hole3.getX() - 45
+								&& x < hole3.getX() + 80)) {
+					new Failed(); // 실패 화면 보여줌
+					setVisible(false); // 게임 화면 끔
+					try {
+						Thread.sleep(1000000000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+
+				// 플레이어 적 부딪힘
+				if ((y > enemy1.getY() - 70 && y < enemy1.getY() + 70 && x > enemy1.getX() - 60
+						&& x < enemy1.getX() + 60)) {
+					if (Check1 == true) {
+						new Failed();
+						setVisible(false);
+						try {
+							Thread.sleep(1000000000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				if ((y > enemy2.getY() - 70 && y < enemy2.getY() + 70 && x > enemy2.getX() - 60
+						&& x < enemy2.getX() + 60)) {
+					if (Check2 == true) {
+						new Failed();
+						setVisible(false);
+						try {
+							Thread.sleep(1000000000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				if ((y > enemy3.getY() - 70 && y < enemy3.getY() + 70 && x > enemy3.getX() - 60
+						&& x < enemy3.getX() + 60)) {
+					if (Check3 == true) {
+						new Failed();
+						setVisible(false);
+						try {
+							Thread.sleep(1000000000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				if ((y > enemy4.getY() - 70 && y < enemy4.getY() + 70 && x > enemy4.getX() - 60
+						&& x < enemy4.getX() + 60)) {
+					if (Check4 == true) {
+						new Failed();
+						setVisible(false);
+						try {
+							Thread.sleep(1000000000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				if ((y > enemy5.getY() - 70 && y < enemy5.getY() + 70 && x > enemy5.getX() - 60
+						&& x < enemy5.getX() + 60)) {
+					if (Check5 == true) {
+						new Failed();
+						setVisible(false);
+						try {
+							Thread.sleep(1000000000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		};
+		n3.schedule(t3, 100, 100); // 0.1초
+
+		// 빠른적 이동
+		Timer N = new Timer();
+		TimerTask T = new TimerTask() {
+			public void run() {
+				if (enTime2 < 30) {
+					enemy4moveX += 10;
+					enemy4.setLocation(enemy4moveX, enemy4moveY);
+
+					enemy5moveX -= 10;
+					enemy5.setLocation(enemy5moveX, enemy5moveY);
+
+				} else if (enTime2 < 60) {
+					enemy4moveX -= 10;
+					enemy4.setLocation(enemy4moveX, enemy4moveY);
+
+					enemy5moveX += 10;
+					enemy5.setLocation(enemy5moveX, enemy5moveY);
+
+					if (enTime2 == 59)
+						enTime2 = 0;
+				}
+				enTime2++;
+			}
+		};
+		N.schedule(T, 50, 50); // 1초 뒤에 1초마다 run 메소드 수행
+		
+		// 공격 이동
+		Timer n4 = new Timer();
+		TimerTask t4 = new TimerTask() {
+			public void run() {
+				if (b == true) {
+					ay -= 10;
+					Attack.setLocation(ax, ay);
+				}
+			}
+		};
+		n4.schedule(t4, 100, 100); // 0.1초
+
+		// 창 설정
+		setSize(1200, 800);
+		setVisible(true);
+		setTitle("보물찾기");
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	// 플레이어 키 이동
+	class getkey extends KeyAdapter {
+		public void keyPressed(KeyEvent e) {
+			int keyCode = e.getKeyCode();
+			switch (keyCode) {
+
+			// 스페이스바 -> 공격, 보물찾기
+			case KeyEvent.VK_SPACE:
+				count1++;
+
+				if (count1 % 2 != 0) {
+					Music.audio1();
+					b = true;
+					Attack.setVisible(true);
+					ax = player.getX() + 30;
+					ay = player.getY();
+					Attack.setBounds(ax, ay, 20, 20);
+				} else {
+					b = false;
+					Attack.setVisible(false);
+				}
+
+				// 보물앞에 스페이스 눌럿을때
+				if ((y - 30 > treasure.getY() - 65 && y < treasure.getY() + 65 && x - 30 > treasure.getX() - 65
+						&& x < treasure.getX() + 65)) {
+					new Pass2();
+					setVisible(false);
+				}
+				break;
+
+			// up , w -> 플레이어 위로 이동
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_W:
+
+				if (y == 70) // 이동제한
+					break;
+				else {
+					y = player.getY() - FLYING_UNIT;
+					player.setLocation(player.getX(), y);
+					break;
+				}
+
+			// down , s -> 플레이어 아래로 이동
+			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_S:
+
+				if (y == 610)  // 이동제한
+					break;
+				else {
+					y = player.getY() + FLYING_UNIT;
+					player.setLocation(player.getX(), y);
+					break;
+				}
+
+			// left , a -> 플레이어 왼쪽로 이동
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_A:
+
+				if (x == 50)  // 이동제한
+					break;
+				else {
+					x = player.getX() - FLYING_UNIT;
+					player.setLocation(x, player.getY());
+					break;
+				}
+
+			// right , d -> 플레이어 오른로 이동
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_D:
+
+				if (x == 1050)  // 이동제한
+					break;
+				else {
+					x = player.getX() + FLYING_UNIT;
+					player.setLocation(x, player.getY());
+					break;
+				}
+
+			}
+		}
+	}
+}

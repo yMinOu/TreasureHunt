@@ -1,0 +1,28 @@
+package Treasurehunt;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Pass extends JFrame {
+	Container c = getContentPane();
+	
+	Pass(){
+		c.setLayout(null);
+		
+		JButton btn = new JButton("다음 단계로");
+		JButton btn2 = new JButton("종료");
+		
+		btn.setBounds(200, 200, 100, 100);
+		c.add(btn);
+		
+		// 창
+		setSize(600, 400);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

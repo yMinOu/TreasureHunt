@@ -1,0 +1,45 @@
+package Treasurehunt;
+
+import javax.swing.*;
+
+import Treasurehunt.Pass.clickListener;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class Failed extends JFrame{
+	Container c = getContentPane();
+	
+	Failed(){
+		c.setLayout(null);
+		
+		ImageIcon bimg = new ImageIcon("img\\Failed.png");
+		Image bimg1 = bimg.getImage();
+		Image bimg2 = bimg1.getScaledInstance(250, 50, Image.SCALE_SMOOTH);
+		ImageIcon bimg3 = new ImageIcon(bimg2);
+		
+		JButton btn = new JButton(bimg3);
+			
+		btn.addMouseListener(new clickListener());
+						
+		// 창
+		setSize(600, 400);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public class clickListener implements MouseListener{
+		public void mouseClicked(MouseEvent e){
+			new Start();
+			setVisible(false);
+			}
+	        public void mousePressed(MouseEvent e) {}
+	        public void mouseReleased(MouseEvent e) {}
+	        public void mouseEntered(MouseEvent e) {}
+	        public void mouseExited(MouseEvent e) {}
+		}
+}

@@ -1,0 +1,59 @@
+package Treasurehunt;
+
+import java.awt.*;
+import javax.swing.*;
+
+import Treasurehunt.Start.clickListener;
+
+import java.awt.event.*;
+
+public class Pass3 extends JFrame {
+	Container c = getContentPane();
+	JLabel bg = new JLabel(); 
+
+	Pass3(){
+		c.setLayout(null);
+		
+		JButton btn = new JButton("처음으로");
+		
+		btn.setBounds(180, 210, 250, 50);
+		
+		ImageIcon img = new ImageIcon("img\\\\pass3.png");
+		btn.setRolloverIcon(img);
+		btn.setBorderPainted(false); 
+		
+		c.add(btn);
+		
+		btn.addMouseListener(new clickListener());
+		
+		ImageIcon ba = new ImageIcon("img\\pass3.png");
+		Image bac = ba.getImage();
+		Image back = bac.getScaledInstance(585, 370, Image.SCALE_SMOOTH);
+		ImageIcon backg = new ImageIcon(back);
+		bg = new JLabel(backg);
+		bg.setBounds(-8, -5, 600, 370);
+		c.add(bg);
+		
+		// 창
+		setSize(600, 400);
+		setVisible(true);
+		setLocationRelativeTo(null); // 창 가운데 배치
+		setResizable(false); // 창 크기 고정
+
+		// 종료시 완전 히 끔
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public class clickListener implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent e)
+        {
+        	new Start();
+			setVisible(false);
+		}
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
+	}
+}

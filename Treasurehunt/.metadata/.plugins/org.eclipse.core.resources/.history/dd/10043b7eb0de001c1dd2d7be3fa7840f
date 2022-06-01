@@ -1,0 +1,17 @@
+package Treasurehunt;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+
+public class Main extends JFrame {
+	Main() {
+		
+	}
+	public static void main(String args[]) {
+		new Main();
+	}
+}
