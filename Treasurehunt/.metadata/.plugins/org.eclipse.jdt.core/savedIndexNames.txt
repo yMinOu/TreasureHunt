@@ -1,4 +1,2 @@
-INDEX VERSION 1.131+C:\Users\YuJin\Desktop\ÀÚ¹Ù\thief\Treasurehunt\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.131+C:\Users\YuJin\Desktop\Treasurehunt\Treasurehunt\.metadata\.plugins\org.eclipse.jdt.core
 680052269.index
-1865797976.index
-4071138249.index
